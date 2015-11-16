@@ -1,0 +1,18 @@
+<div class="container">
+  <table class="table table-striped">
+    <tr>
+      <th>Project</th>
+      <th>Date</th>
+    </tr>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <% if project.created_at.today? %>
+          <td><%= project.created_at %></td>
+        <% else %>
+          <td><%= project.updated_at %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+</div>
