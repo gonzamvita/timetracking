@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  has_many(:entries)
+
   def self.iron_find(value)
     where(value).first
   end
@@ -11,7 +13,7 @@ class Project < ActiveRecord::Base
     order('created_at DESC').limit(max)
   end
 
-  def first_updated_projects(max)
+  def self.first_updated_projects(max)
     order('updated_at ASC').limit(max)
   end
 end

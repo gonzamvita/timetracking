@@ -1,12 +1,17 @@
 <div class="container">
-  <table class="table table-striped">
+  <table class="table table-striped" style="margin-top: 20px; max-width: 500px;">
     <tr>
       <th>Project</th>
       <th>Date</th>
     </tr>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= project.name %></td>
+        <td>
+          <%= project.name %>
+          <% if project.description? %>
+            - <%= project.description %>
+          <% end %>
+        </td>
         <% if project.created_at.today? %>
           <td><%= project.created_at %></td>
         <% else %>
