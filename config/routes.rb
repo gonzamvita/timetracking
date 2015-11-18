@@ -3,9 +3,15 @@ Rails.application.routes.draw do
 
   get '/contact' => 'contact#contact'
 
-  get '/projects' => 'projects#index'
+  # get '/projects' => 'projects#index'
 
-  get '/projects/:id' => 'projects#show'
+  # get '/projects/:id' => 'projects#show'
 
-  get '/projects/:project_id/entries' => 'entries#index'
+  # get '/projects/:project_id/entries' => 'entries#index'
+
+  # get '/projects/:project_id/entries/new' => 'entries#new'
+
+  resources :projects, only: [:index, :show, :new, :create] do
+    resources :entries, only: [:index, :new, :create]
+  end
 end

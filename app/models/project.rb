@@ -23,7 +23,6 @@ class Project < ActiveRecord::Base
 
   def total_hours_in_month(month, year)
     date = Time.new(year, month)
-    binding.pry
     project_entries = self.entries.where(date: date.beginning_of_month..date.end_of_month)
     total_minutes = project_entries.reduce(0) do |sum, entry|
       sum + entry.minutes + entry.hours*60
