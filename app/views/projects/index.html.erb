@@ -7,7 +7,7 @@
     <% @projects.each do |project| %>
       <tr>
         <td>
-          <%= project.name %>
+          <%= link_to(project.name, project_entries_path(project.id)) %>
           <% if project.description? %>
             - <%= project.description %>
           <% end %>
