@@ -5,8 +5,6 @@ class EntriesController < ApplicationController
     @entries = Entry.where(
       project_id: params[:project_id]).where(
         date: date.beginning_of_month..date.end_of_month)
-
-    @total_hours = @project.total_hours_in_month(date.month, date.year)
   end
 
   def new
@@ -19,8 +17,10 @@ class EntriesController < ApplicationController
     @entry = @project.entries.new(entry_params)
 
     if @entry.save
+      flash[:notice] = 'Entry saved succesfully'
       redirect_to action: 'index', controller: 'entries', project_id: @project.id
     else
+      flash.now[:alert] = @entry.errors.full_messages
       render 'new'
     end
   end

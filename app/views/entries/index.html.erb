@@ -1,3 +1,5 @@
+<%= flash_message %>
+
 <h2><%= @project.name %></h2>
 
 <ul>
@@ -11,7 +13,7 @@
   <% end %>
 </ul>
 
-<p> Total hours worked this month <%= @total_hours %></p>
+<p> Total hours worked this month <%= total_work_hours(@project) %></p>
 
 <%= link_to 'Back to Projects', projects_path %>
 <%= link_to 'New Entry', new_project_entry_path(@project.id) %>
