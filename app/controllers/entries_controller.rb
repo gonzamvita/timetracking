@@ -25,6 +25,31 @@ class EntriesController < ApplicationController
     end
   end
 
+  def edit
+    @project = Project.find(params[:project_id])
+    @entry = @project.entries.find(params[:id])
+  end
+
+  def update
+    @entry = Entry.find(params[:id])
+    if @entry.update_attributes(entry_params)
+      flash[:notice] = 'Entry updated succesfully'
+      redirect_to action: 'index'
+    else
+      flash.now[:errors] = @entry.errors.full_messages
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @project = Project.find(params[:project_id])
+    @entry = @project.entries.find(params[:id])
+
+    if @entry.destroy
+      redirect_to action: 'index'
+    end
+  end
+
   private
   def entry_params
     params.require(:entry).permit(:hours, :minutes, :date)

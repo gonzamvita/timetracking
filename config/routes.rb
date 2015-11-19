@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # get '/projects/:project_id/entries/new' => 'entries#new'
 
-  resources :projects, only: [:index, :show, :new, :create] do
-    resources :entries, only: [:index, :new, :create]
+  resources :projects, only: [:index, :show] do
+    resources :entries, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 end
